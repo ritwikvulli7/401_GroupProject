@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeleHealth Prestige</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8f9fa;
+            color: #343a40;
+        }
+
+        header {
+            background: #343a40;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: background 0.3s ease-in-out;
+        }
+
+        header:hover {
+            background: #23272b;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 15px;
+            transition: color 0.3s ease-in-out;
+        }
+
+        nav a:hover {
+            color: #3498db;
+        }
+
+        a.dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        a.dropdown:hover {
+            background-color: #2980b9;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        section {
+            max-width: 800px;
+            margin: 4em auto;
+            padding: 2em;
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            margin-top: 100px;
+        }
+
+        section:hover {
+            transform: translateY(-10px);
+        }
+
+        h1 {
+            color: #343a40;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        p {
+            line-height: 1.6;
+            color: #555;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        button {
+            background: #3498db;
+            color: #fff;
+            padding: 14px 28px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background: #2180b9;
+        }
+
+        footer {
+            background: #343a40;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            align-items: center;
+            margin-top: 200px;
+        }
+
+        .advertisement {
+            background: #fff;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin: 2em 0;
+        }
+
+        .advertisement h2 {
+            color: #343a40;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .advertisement p {
+            line-height: 1.6;
+            color: #555;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .advertisement p:last-child {
+            margin-bottom: 0;
+        }
+
+        .tagline {
+            font-size: 18px;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>TeleHealth Prestige</h1>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a class="dropdown" href="#">Locations</a>
+            <div class="dropdown-content">
+                <a href="#">Anantapur</a>
+                <a href="#">Chittoor</a>
+                <a href="#">East Godavari</a>
+                <a href="#">Guntur</a>
+                <a href="#">Krishna</a>
+                <a href="#">Kurnool</a>
+                <a href="#">Nellore</a>
+                <a href="#">Prakasam</a>
+                <a href="#">Srikakulam</a>
+                <a href="#">Visakhapatnam</a>
+                <a href="#">Vizianagaram</a>
+                <a href="#">West Godavari</a>
+                <a href="#">Y.S.R. Kadapa</a>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home">
+        <img src="TelemedUpdate2022.jpg" alt="Telemedicine Platform" />
+        <h2>Welcome to TeleHealth Prestige!</h2>
+        <p>Experience premium healthcare services from the comfort of your home. Connect with renowned healthcare professionals for personalized consultations.</p>
+
+        <button>Get Started</button>
+    </section>
+
+    <div class="advertisement">
+        <h2>Revolutionize Your Healthcare Experience with Virtual Doctor Services!</h2>
+        <p>Welcome to a new era of healthcare, where convenience meets excellence. Our Virtual Doctor Services redefine how you experience medical care, bringing professional consultations right to your doorstep. Here's why you should choose the future of healthcare:</p>
+        <!-- Add the list of features and benefits here -->
+        <p>Don't miss out on the healthcare revolution. Elevate your health journey with Virtual Doctor Services—because your well-being deserves the best.</p>
+    </div>
+
+    <!-- Add more sections with IDs for navigation links -->
+
+    <footer>
+        <p>Contact us at support@telehealthprestige.com | Follow us on social media</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+/* premium-style.css (Your premium styles) */
+
+/* General Reset */
+body, h1, h2, p, div, ul, li {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f8f8; /* Lighter background color */
+    color: #333;
+}
+
+/* Page Layout */
+.patient-details-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 12px; /* Rounded corners for a premium feel */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+    transition: box-shadow 0.3s ease; /* Smooth transition for box shadow */
+}
+
+.patient-details-container:hover {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2); /* Highlight box shadow on hover */
+}
+
+h2 {
+    color: #007bff;
+}
+
+/* Patient Details Section */
+#patientDetails {
+    margin-top: 20px;
+    padding: 15px; /* Slightly increased padding */
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background: linear-gradient(to bottom, #f9f9f9, #e6e6e6); /* Gradient background */
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    .patient-details-container {
+        margin: 20px auto;
+        padding: 15px; /* Adjusted padding for smaller screens */
+    }
+}
+
+/* Add more styles based on your design preferences */

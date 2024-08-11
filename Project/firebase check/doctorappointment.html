@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Details</title>
+    <link rel="stylesheet" href="doctorappointment.css">
+</head>
+<body>
+    <div class="doctor-container">
+        <img src="doctorpng.png" alt="Doctor Image">
+        <div class="details">
+            <h1>Dr. John Doe</h1>
+            <p>Ratings: 4.8</p>
+            <p>Price for Appointment: 150/-</p>
+            <p class="qualifications">Qualifications: MBBS, MD</p>
+            <p class="specialty">Specialty: Cardiology</p>
+            <button onclick="openBookingPage()">Book an Appointment</button>
+        </div>
+    </div>
+
+    <!-- Appointment Booking Page -->
+    <div class="booking-page" id="bookingPage">
+        <div class="booking-form">
+            <button class="close-btn" onclick="closeBookingPage()">✖</button>
+            <h1>Book an Appointment</h1>
+            <!-- Add a form element -->
+            <form id="bookingForm">
+                <input type="text" class="input-field" placeholder="Your Name" required>
+                <input type="number" class="input-field" placeholder="Your Age" min="0" oninput="this.value = Math.abs(this.value)" required>
+                <select class="input-field" placeholder="Your Gender" name="gender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="number" class="pincode-field" placeholder="Your Pin Code" pattern="\d{6}" required>
+                <div class="disease-types">
+                    <button class="disease-btn" type="button" onclick="selectDisease(this)">Heart Specialist</button>
+                    <button class="disease-btn" type="button" onclick="selectDisease(this)">Dermatologist</button>
+                    <button class="disease-btn" type="button" onclick="selectDisease(this)">Pulmonologist</button>
+                    <button class="disease-btn" type="button" onclick="selectDisease(this)">Gastroenterologist</button>
+                    <button class="disease-btn" type="button" onclick="selectDisease(this)">Ophthalmologist</button>
+                    <button class="disease-btn" type="button" onclick="selectDisease(this)">Orthopedic</button>
+                    <button class="disease-btn" type="button" onclick="selectDisease(this)">Neurologist</button>
+                    <!-- Add more disease buttons as needed -->
+                </div>
+                <div class="consultation-modes">
+                    <div class="modes-heading">Select Mode of Consultation</div>
+                    <button class="mode-btn" type="button" onclick="selectMode(this)">Audio</button>
+                    <button class="mode-btn" type="button" onclick="selectMode(this)">Video</button>
+                    <button class="mode-btn" type="button" onclick="selectMode(this)">Chat</button>
+                </div>
+                <button type="button" class="confirm-btn" onclick="confirmBooking()">Confirm Booking</button>
+            </form>
+            <div class="appointment-details" id="appointmentDetails"></div>
+        </div>
+    </div>
+
+    <script>
+        function openBookingPage() {
+            document.getElementById('bookingPage').style.display = 'flex';
+        }
+
+        function closeBookingPage() {
+            document.getElementById('bookingPage').style.display = 'none';
+        }
+
+        function selectMode(modeBtn) {
+            const modeButtons = document.querySelectorAll('.mode-btn');
+            modeButtons.forEach(button => {
+                button.classList.remove('clicked');
+            });
+            modeBtn.classList.add('clicked');
+        }
+
+        function selectDisease(diseaseBtn) {
+            const diseaseButtons = document.querySelectorAll('.disease-btn');
+            diseaseButtons.forEach(button => {
+                button.classList.remove('clicked');
+            });
+            diseaseBtn.classList.add('clicked');
+        }
+
+        function confirmBooking() {
+            alert('Booking Confirmed!');
+            closeBookingPage();
+        }
+    </script>
+</body>
+</html>

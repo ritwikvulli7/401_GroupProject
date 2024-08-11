@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Appointments</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 36px;
+            font-weight: 600;
+        }
+
+        .appointment-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .appointment {
+            background-color: #fff;
+            border-radius: 10px;
+            max-width: 450px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            padding: 10px;
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+
+        .appointment:hover {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .appointment h2 {
+            margin: 0;
+            color: #333;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .appointment p {
+            margin: 5px 0;
+            color: #666;
+            font-size: 16px;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>My Appointments</h1>
+    <div class="appointment-container" id="appointmentsContainer">
+        <!-- Appointments will be dynamically added here -->
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-database.js" type="module"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA_3OXfmTe-gVBA8iaofPE90n4Hcsr_7CY",
+            authDomain: "signupform-fdc9c.firebaseapp.com",
+            projectId: "signupform-fdc9c",
+            storageBucket: "signupform-fdc9c.appspot.com",
+            messagingSenderId: "485882060806",
+            appId: "1:485882060806:web:29e6205ed4f2b76dc7e387"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase();
+        const auth = getAuth(app);
+
+        function convertTime24to12(time24h) {
+            let [hours, minutes] = time24h.split(':');
+            let modifier = parseInt(hours, 10) >= 12 ? 'PM' : 'AM';
+
+            if (hours === '00') {
+                hours = '12';
+            } else if (parseInt(hours, 10) > 12) {
+                hours = String(parseInt(hours, 10) - 12);
+            }
+
+            return `${hours}:${minutes} ${modifier}`;
+        }
+        function addOneHour(time) {
+            let [hours, minutes] = time.split(':');
+            hours = parseInt(hours, 10) + 1;
+
+            if (hours === 24) {
+                hours = 0;
+            } else if (hours > 24) {
+                hours -= 24;
+            }
+
+            return `${hours}:${minutes}`;
+        }
+        function formatDate(dateString) {
+            const [year, month, day] = dateString.split('-');
+            return `${day}-${month}-${year}`;
+        }
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                const userId = user.uid;
+
+                // Get appointments for the current Asha worker
+                const appointmentsRef = ref(db, 'AppointmentList');
+                onValue(appointmentsRef, (snapshot) => {
+                    const appointmentsContainer = document.getElementById('appointmentsContainer');
+                    appointmentsContainer.innerHTML = ''; // Clear previous appointments
+
+                    snapshot.forEach((childSnapshot) => {
+                        const appointmentData = childSnapshot.val();
+                        // Display appointments for the current Asha worker
+                        if (appointmentData.doctorUid === userId) {
+                            const appointmentDiv = document.createElement('div');
+                            appointmentDiv.classList.add('appointment');
+
+                            // Convert time to 12-hour format
+                            const startTime12h = convertTime24to12(appointmentData.time);
+                            const endTime12h = addOneHour(startTime12h);
+                            const formattedDate = formatDate(appointmentData.date);
+                            // Create HTML for displaying appointment details
+                            appointmentDiv.innerHTML = `
+                                <h2>Appointment with ${appointmentData.patientName}</h2>
+                                <p>Patient Phone Number: ${appointmentData.phoneNumber}</p>
+                                <p>Patient Age: ${appointmentData.age}</p>
+                                <p>Consultation Mode: ${appointmentData.consultationMode}</p>
+                                <p>Type of Problem: ${appointmentData.problemType}</p>
+                                <p>Date: ${formattedDate || 'Pending'}</p>
+                                <p>Time: ${startTime12h} to ${endTime12h}</p>
+                            `;
+                            appointmentsContainer.appendChild(appointmentDiv);
+                        }
+                    });
+                });
+            } else {
+                console.log("User is not signed in.");
+            }
+        });
+    </script>
+</body>
+
+</html>

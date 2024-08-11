@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        header {
+            background-color: #4caf50;
+            padding: 15px;
+            text-align: center;
+            color: white;
+        }
+
+        #doctor-details {
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333333;
+        }
+
+        p {
+            font-size: 16px;
+            color: #666666;
+            margin: 10px 0;
+        }
+
+        #doctor-details {
+            background: linear-gradient(to bottom right, #ffffff, #f0f0f0);
+        }
+
+        #doctor-details:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Asha Profile</h1>
+    </header>
+
+    <div id="doctor-details">
+        <!-- Doctor details will be dynamically added here from Realtime Database -->
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-database.js" type="module"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA_3OXfmTe-gVBA8iaofPE90n4Hcsr_7CY",
+            authDomain: "signupform-fdc9c.firebaseapp.com",
+            projectId: "signupform-fdc9c",
+            storageBucket: "signupform-fdc9c.appspot.com",
+            messagingSenderId: "485882060806",
+            appId: "1:485882060806:web:29e6205ed4f2b76dc7e387"
+        };
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase();
+        const auth = getAuth(app);
+
+        // Get the currently logged-in user's ID from local storage
+        const userInformation = JSON.parse(localStorage.getItem('userInformation'));
+
+        if (userInformation && userInformation.uid) {
+            // Get and display doctor details
+            const doctorDetailsElement = document.getElementById('doctor-details');
+            const doctorRef = ref(db, `AshaWorkerList/${userInformation.uid}`);
+            onValue(doctorRef, (snapshot) => {
+                const doctorData = snapshot.val();
+                if (doctorData) {
+                    doctorDetailsElement.innerHTML = `
+                        <center><h2>Basic Details</h2></center
+                        <p><strong>Full Name:</strong> ${doctorData.fullName}</p>
+                        <p><strong>Email:</strong> ${doctorData.email}</p>
+                        <p><strong>Pincode:</strong> ${doctorData.pincode}</p>
+                    `;
+                } else {
+                    doctorDetailsElement.innerHTML = '<p>Doctor details not found.</p>';
+                }
+            });
+        } else {
+            console.log('No user logged in.');
+        }
+    </script>
+
+
+</body>
+
+</html>

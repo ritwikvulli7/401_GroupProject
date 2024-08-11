@@ -1,0 +1,182 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f8f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    transition: background-color 0.5s ease;
+}
+
+body.dark-mode {
+    background-color: #111;
+}
+
+.doctor-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 500px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    padding: 30px;
+    box-sizing: border-box;
+    text-align: left;
+    transform: scale(1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.doctor-container:hover {
+    transform: scale(1.03);
+}
+
+img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.doctor-container:hover img {
+    transform: scale(1.1);
+}
+
+.details {
+    flex-grow: 1;
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.qualifications {
+    font-size: 14px;
+    color: #777;
+}
+
+.specialty {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+button {
+    width: 100%;
+    border: 0;
+    padding: 14px;
+    background: linear-gradient(to right, #3498db, #297fb8);
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+button.clicked {
+    background: linear-gradient(to right, #297fb8, #1c6ca6);
+    transform: scale(1.05);
+}
+
+button:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Styles for the appointment booking page */
+.booking-page {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.booking-form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    color: #333;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.input-field,
+.pincode-field,
+.disease-btn,
+.mode-btn,
+.confirm-btn {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    outline: none;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.disease-types,
+.consultation-modes {
+    display: flex;
+    overflow-x: auto;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+
+.disease-btn,
+.mode-btn,
+.confirm-btn {
+    min-width: 150px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.disease-btn.clicked,
+.mode-btn.clicked,
+.confirm-btn:hover {
+    background: linear-gradient(to right, #297fb8, #1c6ca6);
+    color: #fff;
+}
+
+.modes-heading {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.appointment-details {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+}

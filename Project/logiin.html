@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="logsign.css">
+    <link rel="shortcut icon" href="healthy.png" type="image/x-icon">
+</head>
+
+<body>
+    <script>
+        function goBack() {
+            window.location.href = 'homepage.html';
+        }
+    </script>
+
+    <div class="container">
+        <div class="close-button" onclick="goBack()">X</div>
+        <form id="mainform">
+            <h2>Login</h2>
+            <div>
+                <input type="email" id="email" placeholder="Email">
+            </div>
+            <div class="flex-img">
+                <input type="password" id="password" placeholder="Password">
+                <img src="eye.png" id="eye" onclick="togglePassword()" alt="Toggle Password">
+            </div>
+            <button id="login" type="submit">Login</button>
+        </form>
+    </div>
+    <script type="module" src="login.js"></script>
+    <script>
+        function togglePassword() {
+            var passwordField = document.getElementById("password");
+            var eyeIcon = document.getElementById("eye");
+
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                eyeIcon.src = "eye-hidden.png";
+            } else {
+                passwordField.type = "password";
+                eyeIcon.src = "eye.png";
+            }
+        }
+    </script>
+</body>
+
+</html>

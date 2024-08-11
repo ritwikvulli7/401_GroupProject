@@ -1,0 +1,682 @@
+/* Reset and General Styles */
+body {
+     max-width: 100%; 
+     margin: 0 auto;  
+    font-family: 'Poppins', sans-serif;
+    padding: 0;
+    background-image: url(https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjk5Ni0wMDlfMS1rcm9pcjRkay5qcGc.jpg);
+    color: #333;
+}
+
+/* Header Styles */
+
+
+header {
+    background: linear-gradient(to right, #3498db, #297fb8);
+    color: #fff;
+    text-align: center;
+    padding: 0.5em 0; /* Reduced padding */
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: background 0.3s ease-in-out;
+    margin-bottom: 50px; /* Removed duplicate margin-bottom */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column; /* Ensure proper alignment for small screens */
+    align-items: center; /* Center items horizontally */
+}
+.hidden {
+    display: none;
+}
+
+
+.logo {
+    font-size: 20px; /* Reduced font size */
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    margin: 0 auto; /* Center the logo horizontally */
+    display: block; /* Ensure the logo is a block-level element for proper spacing */
+}
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Allow navigation items to wrap on smaller screens */
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 15px 25px;
+    margin: 0 15px;
+    transition: color 0.3s ease-in-out;
+}
+
+nav a:hover {
+    color: #67a5d1;
+}
+/* Flex Container Styles */
+.flex-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    justify-content: space-between; /* Distribute items along the main axis */
+    background-color: #3498db;
+    padding: 20px; /* Add some padding for spacing */
+}
+
+/* Joinn Section Styles */
+.joinn {
+    margin: 10px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between; /* Updated to space-between */
+    align-items: center;
+    height: 50vh;
+    background-color: #f0f0f0;
+    border-radius: 15px;
+    width: 100%;
+}
+
+.doc-container {
+    display: flex;
+    align-items: center;
+}
+
+.doc img {
+    max-width: 20%;
+    height: auto;
+    margin-right: 20px;
+}
+
+.doc-content {
+    flex: 1;
+}
+
+.doc h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.doc-1 {
+    font-size: 16px;
+    /* Increased font size */
+    margin-bottom: 15px;
+}
+
+.doc-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+}
+
+.doc-btn:hover {
+    background-color: #2978b5;
+}
+
+.dropdown-btn {
+    background-color: #67a5d1;
+    color: #fff;
+    padding: 15px 25px;
+    margin: 0 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.dropdown-btn:hover {
+    background-color: #527b99;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    display: none;
+}
+
+.dropdown-content a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.dropdown-content a:hover {
+    background-color: #67a5d1;
+    color: #fff;
+}
+
+.get-location-btn:hover {
+    background-color: #45a049;
+}
+
+.location-info {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #060606;
+    font-weight: bold;
+}
+
+/* Pop Section Styles */
+.pop {
+    padding-left: 30px;
+    text-align: center;
+    font-size: 36px;
+    font-weight: 600;
+    color: #3498db;
+    animation: scaleIn 0.8s ease-in-out;
+}
+
+/* Package Section Styles */
+.pack {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px;
+    margin-left: 35px;
+    width: 100%;
+}
+
+.item,
+.item1,
+.view-all {
+    border: 2px solid #d4d4d4;
+    padding: 10px 20px;
+    margin: 8px 12px 8px 0;
+    border-radius: 30px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.item1,
+.view-all {
+    background-color: #3498db;
+    color: white;
+    border: 2px solid #3498db;
+}
+
+.item:hover,
+.item1:hover,
+.view-all:hover {
+    background-color: #3498db;
+    color: white;
+    border-color: #297fb8;
+}
+
+.view-all {
+    margin-left: 0px;
+    font-weight: 700;
+}
+
+/* Package Card Styles */
+.packs {
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    flex-wrap: wrap;
+    padding: 20px;
+    width: 100%;
+}
+
+.pack1 {
+    border: 2px solid #e1e1e1;
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+    background: linear-gradient(to bottom, #ffffff, #f5f5f5);
+    border-radius: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    animation: scaleIn 0.8s ease-in-out;
+}
+
+.pack1:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+h2 {
+    color: #3498db;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+span {
+    display: block;
+    color: #555;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+p {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 10px;
+    border: 0px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+    background-color: #297fb8;
+}
+
+/* Body Section Styles */
+.body1 {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    backdrop-filter: blur(2px);
+    width: 100%;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+    background: transparent;
+    backdrop-filter: blur(2px);
+    padding: 10px 40px 5px 10px; /* Left and right paddings of 200 */
+    border-radius: 10px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    width: calc(100% + 20px);
+    margin-bottom: 20px;
+}
+
+.items {
+    position: relative;
+    padding: 10px 5px 10px 10px;
+    margin: 5px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    color: black;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    cursor: pointer;
+    flex: 1 0 calc(25% - 20px);
+    max-width: calc(25% - 20px);
+}
+
+.items:hover {
+    background-color: #f0f0f0;
+}
+
+.items.clicked {
+    background-color: #fff;
+}
+
+.items.clicked .value {
+    color: #3498DB;
+}
+
+.plus {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #3498DB;
+    border: 1px solid #3498DB;
+    padding: 2px 5px;
+    transition: opacity 0.3s ease, border-color 0.3s ease;
+    z-index: 1;
+}
+
+.plus.hide {
+    opacity: 0;
+}
+
+.tick {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #3498DB;
+    transition: opacity 0.3s ease;
+    display: none;
+    z-index: 1;
+}
+
+.tick.show {
+    display: inline-block;
+}
+
+.value {
+    position: relative;
+    z-index: 2;
+}
+
+.proceed-button {
+    /* Updated button styles */
+    padding: 15px 30px;
+    background-color: #3498DB;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s, color 0.3s;
+    display: none;
+}
+
+.proceed-button:hover {
+    background-color: #297fb8;
+}
+
+/* Diseases Section Styles */
+h4#remotes {
+    margin-left: 30px;
+    color: #3498db;
+    font-size: 24px;
+    border-top: 100px;
+}
+
+#remotes {
+    margin-top: 255px;
+}
+
+.diseases {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.d1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    text-align: center;
+}
+
+.imgs {
+    border-radius: 30px;
+    height: 150px;
+    width: 170px;
+    object-fit: cover; /* Ensure image covers the entire container */
+}
+
+.dis {
+    color: #3498db;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Body Section Styles */
+.body1 {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+    width: 100%;
+    animation: fadeIn 1s ease-in-out;
+    border-radius: 15px;
+}
+
+/* Premium Button Styles */
+.button, .proceed-button, .asha-portal-button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 15px 30px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.button:hover, .proceed-button:hover, .asha-portal-button:hover {
+    background-color: #297fb8;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Flex Container Styles */
+
+.dd {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+/* Flex Container Div Styles */
+.flex-container > div {
+    background-color: #3498db;
+    margin: 10px;
+    padding: 20px;
+    font-size: 15px;
+    padding-left: 100px;
+}
+
+/* Anchor Styles */
+a {
+    text-decoration: none;
+}
+
+/* Image Section Styles */
+.image-section {
+    border-radius: 10px;
+}
+
+/* Keyframe Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Scale In Animation */
+/* Keyframe Animation */
+/* Keyframe Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Scale In Animation */
+@keyframes scaleIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+/* Global Styles */
+/* Appointment card styles */
+.appointment-card {
+    display: flex;
+    flex-direction: row; /* Align items in a row */
+    justify-content: center; /* Center the items horizontally */
+    align-items: center; /* Center the items vertically */
+    padding: 20px;
+    gap: 20px; /* Add gap between child elements */
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Form container styles */
+.form-container {
+    width: 60%; /* Adjust the width as needed */
+    margin: auto; /* Center the form horizontally */
+}
+
+/* Doctor search form styles */
+.doctor-search-form {
+    display: flex;
+    flex-direction: column; /* Align children in a column */
+    align-items: center; /* Center children horizontally */
+    gap: 20px; /* Add gap between child elements */
+}
+
+/* Search results styles */
+.search-results {
+    display: flex;
+    flex-direction: column; /* Align children in a column */
+    align-items: center; /* Center children horizontally */
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+/* Doctor list styles */
+.doctor-list {
+    margin-top: 10px;
+}
+
+/* Doctor details styles */
+.doctor-details {
+    border: 2px solid black;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin-top: 20px;
+}
+
+/* Make appointment button styles */
+#makeAppointmentBtn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007bff; /* Blue color */
+    color: #fff; /* White text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#makeAppointmentBtn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Time slot styles */
+.time-slot {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.booked {
+    background-color: #f0f0f0; /* Color for booked slots */
+    cursor: not-allowed;
+}
+
+
+.form-container {
+    display: none;
+}
+
+/* Doctor Info Styles */
+.doctor-info {
+    display: flex;
+    align-items: center;
+}
+
+.doctor-img {
+    border-radius: 50%;
+    margin-right: 20px;
+    width: 80px;
+    height: 80px;
+    object-fit: cover; /* Ensure the image covers the entire container */
+}
+
+.info {
+    flex: 1;
+}
+
+/* Form Styles */
+h2 {
+    color: #3498db;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+}
+
+input,
+select {
+    margin-bottom: 10px;
+    padding: 10px; /* Adjust padding for better consistency */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Button Styles */
+button {
+    background-color: #3498db;
+    color: white;
+    padding: 12px 24px; /* Slightly larger padding for a more comfortable click */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+    background-color: #297fb8;
+}
+
+

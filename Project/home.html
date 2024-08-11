@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeleHealth Prestige - Premium Health Packages</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="home.css">
+    <link rel="shortcut icon" href="healthy.png" type="image/x-icon">
+
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">TeleHealth Prestige </div><br>
+
+        <nav>
+            <a href="homepage.html">Home</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+            <div id="myAppointmentsLink">
+                <a href="appointments.html" class="asha-portal-button">My Appointments</a>
+            </div>
+            <a href="#">ASHA near me</a>
+            <a id="loginLink" href="logiin.html">Login</a>
+            <a id="signupLink" href="signup.html">Signup</a>
+            <a id="profileLink" href="profile.html" class="hidden">Profile</a>
+            <a id="logoutButton" href="#" class="hidden">Logout</a>
+            <div class="dropdown">
+                <button class="dropdown-btn">Locations</button>
+                <div class="dropdown-content">
+                    <a href="#">Anantapur</a>
+                    <a href="#">Chittoor</a>
+                    <a href="#">East Godavari</a>
+                    <a href="#">Guntur</a>
+                    <a href="#">Krishna</a>
+                    <a href="#">Kurnool</a>
+                    <a href="#">Nellore</a>
+                    <a href="#">Prakasam</a>
+                    <a href="#">Srikakulam</a>
+                    <a href="#">Visakhapatnam</a>
+                    <a href="#">Vizianagaram</a>
+                    <a href="#">West Godavari</a>
+                    <a href="#">Y.S.R. Kadapa</a>
+                </div>
+                <button class="get-location-btn" onclick="getLocation()">Get Location</button>
+            </div>
+        </nav>
+        <h2 id="msg"></h2>
+        <h2 id="greet"></h2>
+        <div class="location-info-container">
+            <p id="locationInfo" class="location-info"></p>
+        </div>
+
+    </header>
+
+    <section id="home">
+
+
+
+        <h4 id="remotes">Dreadful Diseases in Remote Areas</h4>
+        <div class="diseases">
+            <div class="d1">
+                <img src="d1.jpg" alt="" class="imgs">
+                <span class="dis">Premature Disorders</span>
+            </div>
+            <div class="d1">
+                <img src="d3.jpeg" alt="" class="imgs">
+                <span>Malnutrition</span>
+            </div>
+            <div class="d1">
+                <img src="d2.avif" alt="" class="imgs">
+                <span>Heart Attack</span>
+            </div>
+            <div class="d1">
+                <img src="d4.jpeg" alt="" class="imgs">
+                <span>Dengue</span>
+            </div>
+            <div class="d1">
+                <img src="d5.jpeg" alt="" class="imgs">
+                <span>Tuberculosis</span>
+            </div>
+            <div class="d1">
+                <img src="d6.webp" alt="" class="imgs">
+                <span>Cancer</span>
+            </div>
+        </div>
+        <div class="pop">Premium Health Packages</div>
+        <div class="pack">
+            <div class="item1">All Packages</div>
+            <div class="item">Diabetes</div>
+            <div class="item">Dengue</div>
+            <div class="item">Cholera</div>
+            <div class="item">Cardiovascular</div>
+            <div class="item">Fitness</div>
+            <div class="item">Malnutrition</div>
+            <div class="item">Blood Pressure</div>
+            <div class="view-all">View All</div>
+        </div>
+        <div class="packs">
+            <div class="pack1">
+                <h2>Good Health Smart</h2>
+                <span>Includes 59 Tests</span>
+                <p>Full Body Checkup</p>
+                <button><a href="payment.html">Add to Cart</a></button>
+            </div>
+            <div class="pack1">
+                <h2>Good Health Golden</h2>
+                <span>Includes 3 Tests</span>
+                <p>Thyroid Tests</p>
+                <button><a href="payment.html">Add to Cart</a></button>
+            </div>
+            <div class="pack1">
+                <h2>Good Health Premium</h2>
+                <span>Includes 75 Tests</span>
+                <p>Blood Cell Count</p>
+                <button><a href="payment.html">Add to Cart</a></button>
+            </div>
+            <div class="pack1">
+                <h2>Good Health Premium</h2>
+                <span>Includes 75 Tests</span>
+                <p>Blood Cell Count</p>
+                <button><a href="payment.html">Add to Cart</a></button>
+            </div>
+        </div>
+
+        <div class="appointment-card">
+            <div class="doctor-search-form">
+                <div class="search-results">
+                    <select id="specialityDropdown">
+                        <option value="">Select Speciality</option>
+                        <!-- Add options dynamically using JavaScript -->
+                    </select>
+                    <button onclick="searchDoctors()">Search Doctors</button>
+                    <div id="doctorList" class="doctor-list"></div>
+                </div>
+
+                <!-- Doctor details and Make Appointment button -->
+                <div id="doctorDetails" style="display: none;">
+                    <div class="doctor-details">
+                        <h2>Doctor Details</h2>
+                        <p><b>Name:</b> <span id="doctorName"></span></p>
+                        <p><b>Speciality:</b> <span id="doctorSpeciality"></span></p>
+                        <p><b>Time:</b> <span id="doctorTime"></span></p>
+                        <!-- Add more details here as needed -->
+                    </div>
+                    <button id="makeAppointmentBtn">Make Appointment</button>
+                </div>
+
+            </div>
+            <div class="form-container" id="appointmentForm">
+                <h2>Patient Details</h2>
+                <form>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" name="age" required>
+
+                    <label for="gender">Gender:</label>
+                    <select id="gender" name="gender" required>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+
+                    <label for="phoneNumber">Phone Number:</label>
+                    <input type="tel" id="phoneNumber" name="phoneNumber" required>
+
+                    <label for="pincode">Pincode:</label>
+                    <input type="text" id="pincode" name="pincode" required>
+
+                    <label for="problems">Types of Problems:</label>
+                    <input type="text" id="problems" name="problems" required>
+
+                    <label for="consultationMode">Mode of Consultation:</label>
+                    <select id="consultationMode" name="consultationMode" required>
+                        <option value="audio">Audio</option>
+                        <option value="video">Video</option>
+                        <option value="chat">Chat</option>
+                    </select>
+
+                    <label for="appointmentDate">Appointment Date:</label>
+                    <input type="date" id="appointmentDate" name="appointmentDate" required>
+
+                    <h3>Select Time Slot:</h3>
+                    <div id="timeSlotContainer">
+                        <!-- Time slots will be dynamically added here -->
+                    </div>
+
+                    <button id="submitBtn">Submit Appointment</button>
+                </form>
+                <p class="alert" id="alertMessage"></p>
+            </div>
+
+        </div>
+        <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+
+
+        <script>
+            const firebaseConfig = {
+                apiKey: "AIzaSyA_3OXfmTe-gVBA8iaofPE90n4Hcsr_7CY",
+                authDomain: "signupform-fdc9c.firebaseapp.com",
+                projectId: "signupform-fdc9c",
+                storageBucket: "signupform-fdc9c.appspot.com",
+                messagingSenderId: "485882060806",
+                appId: "1:485882060806:web:29e6205ed4f2b76dc7e387"
+            };
+
+            const firebaseApp = firebase.initializeApp(firebaseConfig);
+            const auth = firebaseApp.auth();
+            const database = firebaseApp.database();
+
+            // Function to clear form fields
+            function clearForm() {
+                document.getElementById("name").value = "";
+                document.getElementById("age").value = "";
+                document.getElementById("gender").value = "";
+                document.getElementById("phoneNumber").value = "";
+                document.getElementById("pincode").value = "";
+                document.getElementById("problems").value = "";
+                document.getElementById("consultationMode").value = "";
+            }
+
+            // Function to initialize the dropdown menu with specialties
+            function initializeSpecialities() {
+                const specialities = ['Gynecologist', 'Cardiologist', 'Dermatologist', 'Pediatrician', 'Orthopedic Surgeon', 'Oncologist'];
+                const specialityDropdown = document.getElementById('specialityDropdown');
+                specialities.forEach((speciality) => {
+                    const option = document.createElement('option');
+                    option.value = speciality;
+                    option.textContent = speciality;
+                    specialityDropdown.appendChild(option);
+                });
+            }
+
+            // Call the function to initialize the dropdown menu
+            initializeSpecialities();
+
+            // Function to search doctors by specialty
+            function searchDoctors() {
+                const selectedSpeciality = document.getElementById('specialityDropdown').value.trim();
+                const doctorList = document.getElementById('doctorList');
+                doctorList.innerHTML = ''; // Clear previous search results
+
+                // Loop through doctors in DoctorList and display matching ones
+                firebase.database().ref('DoctorList').once('value', (snapshot) => {
+                    snapshot.forEach((childSnapshot) => {
+                        const doctorData = childSnapshot.val();
+                        const doctorName = `${doctorData.firstname} ${doctorData.lastname}`;
+                        const doctorSpeciality = doctorData.speciality;
+                        if (selectedSpeciality === '' || doctorSpeciality === selectedSpeciality) {
+                            const doctorListItem = document.createElement('div');
+                            doctorListItem.innerHTML = `<p onclick="displayDoctorDetails('${childSnapshot.key}')">${doctorName}</p>`;
+                            doctorList.appendChild(doctorListItem);
+                        }
+                    });
+                });
+            }
+
+            let selectedDoctorUid = ''; // Variable to store the selected doctor's UID
+
+            function displayDoctorDetails(doctorId) {
+                const doctorRef = firebase.database().ref(`DoctorList/${doctorId}`);
+                doctorRef.once('value', (snapshot) => {
+                    const doctorData = snapshot.val();
+                    if (doctorData) {
+                        // Update doctor details in the HTML
+                        document.getElementById('doctorName').innerText = `${doctorData.firstname} ${doctorData.lastname}`;
+                        document.getElementById('doctorSpeciality').innerText = doctorData.speciality;
+                        document.getElementById('doctorTime').innerText = convertToAMPM(doctorData.timeFrom) + ' to ' + convertToAMPM(doctorData.timeTo);
+
+                        // Store the doctor's UID in the variable
+                        selectedDoctorUid = doctorId;
+
+                        // Show doctor details
+                        document.getElementById('doctorDetails').style.display = 'block';
+                        // Show "Make Appointment" button
+                        document.getElementById('makeAppointmentBtn').style.display = 'block';
+
+                        // Generate and display time slot radio buttons
+                        const doctorAvailability = {
+                            timeFrom: doctorData.timeFrom, // Example start time
+                            timeTo: doctorData.timeTo // Example end time
+                        };
+                        const timeSlots = generateTimeSlots(doctorAvailability);
+                        generateTimeSlotRadioButtons(timeSlots);
+                    } else {
+                        console.log("Doctor not found");
+                    }
+                });
+            }
+
+
+            // Function to convert time from 24-hour format to AM/PM format
+            function convertToAMPM(time) {
+                const [hours, minutes] = time.split(':');
+                const hour = parseInt(hours, 10);
+                const minute = parseInt(minutes, 10);
+                const period = hour >= 12 ? 'PM' : 'AM';
+                const displayHour = hour % 12 === 0 ? 12 : hour % 12;
+                return `${displayHour}:${minute.toString().padStart(2, '0')} ${period}`;
+            }
+
+            // Event listener for the "Make Appointment" button
+            document.getElementById('makeAppointmentBtn').addEventListener('click', function () {
+                // Toggle the display of the appointment form
+                const appointmentForm = document.getElementById('appointmentForm');
+                if (appointmentForm.style.display === 'none') {
+                    appointmentForm.style.display = 'block';
+                } else {
+                    appointmentForm.style.display = 'none';
+                }
+            });
+            function generateTimeSlots(doctorAvailability) {
+                const timeSlots = [];
+                const lunchStart = "13:00"; // Lunch break start time
+                const lunchEnd = "14:00"; // Lunch break end time
+                const timeFrom = doctorAvailability.timeFrom;
+                const timeTo = doctorAvailability.timeTo;
+
+                let currentTime = timeFrom;
+
+                while (currentTime < timeTo) {
+                    if (currentTime !== lunchStart) {
+                        timeSlots.push({ time: currentTime, booked: false });
+                    }
+
+                    // Increment currentTime by 1 hour
+                    const [hours, minutes] = currentTime.split(":").map(Number);
+                    const totalMinutes = hours * 60 + minutes;
+                    const nextTotalMinutes = totalMinutes + 60;
+                    const nextHours = Math.floor(nextTotalMinutes / 60);
+                    const nextMinutes = nextTotalMinutes % 60;
+                    currentTime = `${String(nextHours).padStart(2, "0")}:${String(nextMinutes).padStart(2, "0")}`;
+                }
+
+                return timeSlots;
+            }
+
+            function generateTimeSlotRadioButtons(timeSlots) {
+                const timeSlotContainer = document.getElementById("timeSlotContainer");
+                timeSlotContainer.innerHTML = ""; // Clear previous slots
+
+                timeSlots.forEach((slot) => {
+                    const slotStart = slot.time;
+                    // Skip lunch break (1:00 PM to 2:00 PM)
+                    if (slotStart === "13:00") {
+                        return;
+                    }
+
+                    const [startHour, startMinute] = slotStart.split(":").map(Number);
+
+                    // Calculate end time
+                    const endHour = startHour === 23 ? 0 : startHour + 1;
+                    const endMinute = startHour === 23 ? 0 : startMinute;
+
+                    // Format start and end time strings
+                    const startTimeString = `${startHour % 12 || 12}:${String(startMinute).padStart(2, "0")} ${startHour < 12 ? "AM" : "PM"}`;
+                    const endTimeString = `${endHour % 12 || 12}:${String(endMinute).padStart(2, "0")} ${endHour < 12 ? "AM" : "PM"}`;
+
+                    // Create radio button and label
+                    const radioButton = document.createElement("input");
+                    radioButton.type = "radio";
+                    radioButton.name = "timeSlot";
+                    radioButton.value = slotStart;
+                    radioButton.id = slotStart; // Set unique ID for each radio button
+
+                    const label = document.createElement("label");
+                    label.textContent = `${startTimeString} to ${endTimeString}`;
+                    label.setAttribute("for", slotStart); // Associate label with radio button
+
+                    // Append radio button and label to container
+                    timeSlotContainer.appendChild(radioButton);
+                    timeSlotContainer.appendChild(label);
+                    timeSlotContainer.appendChild(document.createElement("br"));
+                });
+            }
+
+            // Function to display available time slots to the patient
+            function displayTimeSlots(timeSlots) {
+                const timeSlotsContainer = document.getElementById("timeSlotsContainer");
+                timeSlotsContainer.innerHTML = ""; // Clear previous slots
+
+                timeSlots.forEach(slot => {
+                    const slotElement = document.createElement("div");
+                    slotElement.textContent = slot.time;
+                    slotElement.classList.add("time-slot");
+
+                    if (slot.booked) {
+                        slotElement.classList.add("booked");
+                        slotElement.disabled = true;
+                    } else {
+                        slotElement.addEventListener("click", () => selectTimeSlot(slot.time));
+                    }
+
+                    timeSlotsContainer.appendChild(slotElement);
+                });
+            }
+
+            // Function to retrieve booked slots for the selected date
+            async function getBookedSlots(selectedDate, selectedDoctorUid) {
+                // Reference to the AppointmentList node
+                const appointmentsRef = firebase.database().ref('AppointmentList');
+
+                // Query appointments for the selected date and doctor UID
+                const snapshot = await appointmentsRef.orderByChild('date').equalTo(selectedDate).once('value');
+
+                const bookedSlots = [];
+
+                // Loop through appointments to extract booked slots
+                snapshot.forEach((childSnapshot) => {
+                    const appointment = childSnapshot.val();
+                    if (appointment.doctorUid === selectedDoctorUid) {
+                        // Extract the time slot from the appointment and mark it as booked
+                        bookedSlots.push({ time: appointment.time, booked: true });
+                    }
+                });
+
+                return bookedSlots;
+            }
+
+
+
+            // Function to mark booked slots as unavailable in the UI
+            function markBookedSlotsUnavailable(bookedSlots) {
+                bookedSlots.forEach(slot => {
+                    const slotElement = document.querySelector(`.time-slot[data-time="${slot.time}"]`);
+                    if (slotElement) {
+                        slotElement.classList.add("booked");
+                        slotElement.disabled = true;
+                    }
+                });
+            }
+            async function makeAppointment(event) {
+                event.preventDefault();
+
+                try {
+                    // Retrieve form input values
+                    const appointmentDate = document.getElementById("appointmentDate").value;
+                    const selectedTimeSlot = document.querySelector('input[name="timeSlot"]:checked').value; // Get the selected time slot
+                    const name = document.getElementById("name").value;
+                    const age = document.getElementById("age").value;
+                    const gender = document.getElementById("gender").value;
+                    const phoneNumber = document.getElementById("phoneNumber").value;
+                    const pincode = document.getElementById("pincode").value;
+                    const problems = document.getElementById("problems").value;
+                    const consultationMode = document.getElementById("consultationMode").value;
+
+                    // Check if any required field is empty
+                    if (!name || !age || !gender || !phoneNumber || !pincode || !problems || !consultationMode || !selectedTimeSlot) {
+                        console.error("Error: Some fields are empty. Please fill in all the details.");
+                        alert("Please fill in all the details and select a time slot.");
+                        return;
+                    }
+
+                    // Reference to AppointmentList node
+                    const appointmentsRef = firebase.database().ref('AppointmentList');
+
+                    // Check if doctor details are displayed
+                    if (document.getElementById('doctorDetails').style.display === 'none') {
+                        console.error("Error: Doctor is not selected.");
+                        alert("Please select a doctor first.");
+                        return;
+                    }
+
+                    // Retrieve doctor's UID
+                    const doctorUid = selectedDoctorUid; // You need to set this variable when the doctor is selected
+
+                    // Match Asha Worker with the provided pincode
+                    let ashaWorkerUid = '';
+                    await firebase.database().ref('AshaWorkerList').orderByChild('pincode').equalTo(pincode).once('value', (snapshot) => {
+                        snapshot.forEach((childSnapshot) => {
+                            ashaWorkerUid = childSnapshot.key;
+                        });
+                    });
+
+                    // Push appointment data to the Realtime Database
+                    const newAppointmentRef = await appointmentsRef.push({
+                        patientName: name,
+                        age: age,
+                        gender: gender,
+                        phoneNumber: phoneNumber,
+                        pincode: pincode,
+                        problemType: problems,
+                        consultationMode: consultationMode,
+                        date: appointmentDate, // Set the appointment date
+                        time: selectedTimeSlot, // Set the selected time slot
+                        status: "Pending", // Status initially set to "Pending"
+                        doctorUid: doctorUid, // Doctor UID
+                        ashaWorkerUid: ashaWorkerUid // Asha Worker UID
+                    });
+
+                    // Clear the form fields
+                    clearForm();
+
+                    // Display success message
+                    alert("Appointment is submitted successfully.");
+
+                    // Optionally, you can retrieve the newly generated key for the appointment
+                    const appointmentKey = newAppointmentRef.key;
+                    console.log("New appointment key:", appointmentKey);
+                } catch (error) {
+                    console.error("Error submitting appointment:", error);
+                    alert("Error submitting appointment. Please try again.");
+                }
+            }
+
+
+            document.getElementById("submitBtn").addEventListener("click", makeAppointment);
+
+
+        </script>
+
+
+        <div class="body1">
+            <div class="image-section">
+                <img src="lab2.png" alt="Image" style="width: 300px; height: auto;">
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="items"><span class="value">Thyroid Test</span> <span class="plus">+</span><span
+                            class="tick">✔</span></div>
+                    <div class="items"><span class="value">Diabetes</span> <span class="plus">+</span><span
+                            class="tick">✔</span></div>
+                    <div class="items"><span class="value">B.P</span> <span class="plus">+</span><span
+                            class="tick">✔</span></div>
+                    <div class="items"><span class="value">Urine Test</span> <span class="plus">+</span><span
+                            class="tick">✔</span></div>
+                </div>
+                <div class="row">
+                    <div class="items"><span class="value">Blood Count Test</span> <span class="plus">+</span><span
+                            class="tick">✔</span></div>
+                    <div class="items"><span class="value">Covid</span> <span class="plus">+</span><span
+                            class="tick">✔</span></div>
+                    <div class="items"><span class="value">Kidney Function</span> <span class="plus">+</span><span
+                            class="tick">✔</span></div>
+                    <div class="items"><span class="value">Liver Function</span> <span class="plus">+</span><span
+                            class="tick">✔</span></div>
+                </div>
+            </div>
+            <button class="proceed-button">Proceed</button>
+        </div>
+    </section>
+
+    <script src="home.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Call the onLoginOrSignup function to handle login/signup changes
+            onLoginOrSignup();
+
+            // Add event listener for logout button
+            const logoutButton = document.getElementById('logoutButton');
+            logoutButton.addEventListener('click', function (event) {
+                event.preventDefault();
+                logout().then(updateNavigationLinks);
+            });
+
+            // Update navigation links and UI components
+            updateNavigationLinks();
+
+            // Hide the 'are you a doctor' section initially
+            hideDoctorSection();
+        });
+
+        async function logout() {
+            // Clear user-related data from storage or variables
+            localStorage.removeItem('isLoggedIn');
+            sessionStorage.removeItem('user-creds');
+            sessionStorage.removeItem('user-info');
+
+            // Redirect to homepage after logout
+            window.location.href = "homepage.html";
+
+            // Use a Promise to signal the completion of the logout process
+            return new Promise(resolve => {
+                resolve();
+            });
+        }
+
+        function onLoginOrSignup() {
+            // Retrieve user credentials from sessionStorage
+            let UserCreds = JSON.parse(sessionStorage.getItem("user-creds"));
+
+            console.log("UserCreds:", UserCreds);
+
+            // Assign UserCreds to a global variable
+            window.UserCreds = UserCreds;
+
+            // Call any additional functions or logic you need
+            displayWelcomeMessage(UserCreds);
+        }
+
+        function displayWelcomeMessage(UserCreds) {
+            console.log("Displaying welcome message with UserCreds:", UserCreds);
+
+            // Display user information on the page if available
+            let MsgHead = document.getElementById('msg');
+            let GreetHead = document.getElementById('greet');
+
+            // Check if the user is logged in
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+            if (isLoggedIn && UserCreds && MsgHead && GreetHead) {
+                // Use first name and last name from sessionStorage if available
+                const userInfoString = sessionStorage.getItem("user-info");
+                const userInfo = userInfoString ? JSON.parse(userInfoString) : null;
+
+                if (userInfo) {
+                    const firstName = userInfo.firstname || '';
+                    const lastName = userInfo.lastname || '';
+                    GreetHead.innerText = `Welcome ${firstName} ${lastName}!`;
+                } else {
+                    // Handle the case where user information is not available
+                    GreetHead.innerText = `Welcome User!`;
+                }
+            } else {
+                // User is not logged in or user credentials are not available, hide welcome message
+                GreetHead.innerText = "";
+            }
+
+            // Replace login and signup links with profile link
+            updateNavigationLinks();
+        }
+
+        function updateNavigationLinks() {
+            const loginLink = document.getElementById('loginLink');
+            const signupLink = document.getElementById('signupLink');
+            const profileLink = document.getElementById('profileLink');
+            const logoutButton = document.getElementById('logoutButton');
+            const myAppointmentsLink = document.getElementById('myAppointmentsLink');
+
+            // Check if the user is logged in
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+            if (isLoggedIn) {
+                // User is logged in, hide login and signup, show profile, logout, and my appointments
+                loginLink.classList.add('hidden');
+                signupLink.classList.add('hidden');
+                profileLink.classList.remove('hidden');
+                logoutButton.classList.remove('hidden');
+                myAppointmentsLink.style.display = 'block';
+                // Show the welcome message when the logout button is visible
+                document.getElementById('greet').classList.remove('hidden');
+            } else {
+                // User is not logged in, show login and signup, hide profile, logout, and my appointments
+                loginLink.classList.remove('hidden');
+                signupLink.classList.remove('hidden');
+                profileLink.classList.add('hidden');
+                logoutButton.classList.add('hidden');
+                myAppointmentsLink.style.display = 'none';
+                // Hide the welcome message when the logout button is hidden
+                document.getElementById('greet').classList.add('hidden');
+            }
+        }
+        function hideDoctorSection() {
+            const doctorSection = document.getElementById('joinn');
+            if (doctorSection) {
+                doctorSection.style.display = 'none';
+            }
+        }
+        function showAppointmentForm() {
+            const appointmentForm = document.getElementById('appointmentForm');
+            if (appointmentForm) {
+                appointmentForm.style.display = 'block';
+            }
+        }
+
+        // Function to get user's location
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function showPosition(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            const mapUrl = `https://maps.google.com/maps?q=${latitude},${longitude}&z=15`;
+
+            // Replace 'YOUR_OPENCAGE_API_KEY' with your actual OpenCage API key
+            const apiKey = 'd8002edd0e3845dfbd115130c95b7cbe';
+            const apiUrl = `https://api.opencagedata.com/geocode/v1/json?key=${apiKey}&q=${latitude}+${longitude}&pretty=1`;
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.results && data.results.length > 0) {
+                        const locationName = data.results[0].formatted;
+                        document.getElementById('locationInfo').innerText = `Your current location: ${locationName}`;
+                    } else {
+                        document.getElementById('locationInfo').innerText = 'Location information not available.';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching location information:', error);
+                    document.getElementById('locationInfo').innerText = 'Error fetching location information.';
+                });
+        }
+
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("User denied the request for Geolocation.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    alert("The request to get user location timed out.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("An unknown error occurred.");
+                    break;
+            }
+        }
+
+        // Function to make an appointment
+        function makeAppointment() {
+            const appointmentForm = document.getElementById('appointmentForm');
+            if (appointmentForm) {
+                appointmentForm.style.display = 'none';
+            }
+            alert('Appointment made successfully!');
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            const items = document.querySelectorAll('.items');
+            const proceedButton = document.querySelector('.proceed-button');
+
+            items.forEach(item => {
+                const plus = item.querySelector('.plus');
+                const tick = item.querySelector('.tick');
+
+                plus.addEventListener('click', (event) => {
+                    selectItem(item);
+                    event.stopPropagation(); // Prevent event bubbling
+                });
+
+                tick.addEventListener('click', (event) => {
+                    deselectItem(item);
+                    event.stopPropagation(); // Prevent event bubbling
+                });
+
+                item.addEventListener('click', () => {
+                    if (!item.classList.contains('clicked')) {
+                        selectItem(item);
+                    } else {
+                        deselectItem(item);
+                    }
+                });
+            });
+
+            function selectItem(item) {
+                item.querySelector('.value').style.color = '#3498DB'; // Change color of value
+                item.style.borderColor = '#3498DB'; // Change border color
+                item.querySelector('.plus').classList.add('hide');
+                item.querySelector('.tick').classList.add('show');
+                item.classList.add('clicked'); // Add clicked state
+                toggleProceedButtonVisibility();
+            }
+
+            function deselectItem(item) {
+                item.querySelector('.value').style.color = 'black'; // Revert color of value
+                item.style.borderColor = 'transparent'; // Revert border color
+                item.querySelector('.plus').classList.remove('hide');
+                item.querySelector('.tick').classList.remove('show');
+                item.classList.remove('clicked'); // Remove clicked state
+                toggleProceedButtonVisibility();
+            }
+
+            function toggleProceedButtonVisibility() {
+                let anyItemSelected = false;
+                items.forEach(item => {
+                    if (item.classList.contains('clicked')) {
+                        anyItemSelected = true;
+                    }
+                });
+                proceedButton.style.display = anyItemSelected ? 'block' : 'none';
+            }
+
+            proceedButton.addEventListener('click', () => {
+                // Redirect to another page
+                window.location.href = 'another-page.html';
+            });
+        });
+    </script>
+    
+    <footer>
+
+        <div class="flex-container">
+            <div>
+                <p><b>Know Us</b></p>
+                <a href="">
+                    <p>About Us</P>
+                </a>
+                <a href="">
+                    <p>Contact Us
+                </a>
+                <a href="">
+                    <p>Press Coverage</P>
+                </a>
+                <a href="">
+                    <p>Careers</P>
+                </a>
+                <a href="">
+                    <p>Business Partnership</P>
+                </a>
+                <p>Become a Health Partner</P>
+                <p>Corporate Governance</p>
+            </div>
+            <div>
+                <p><b>Our Policies</b></p>
+                <p>Privacy Policy</P>
+                <p>Terms and Conditions</p>
+                <p>Editorial Policy</p>
+                <p>Return Policy</p>
+                <p>IP Policy</p>
+                <p>Grievance Redressal Policy</P>
+                <p>Fake Jobs and Fraud Disclaimer</p>
+            </div>
+            <div>
+                <p><b>Our Services</b></P>
+                <p>Order Medicines</p>
+                <p>Book Lab Tests</p>
+                <p>Consult a Doctor</p>
+                <p>Ayurveda Articles</p>
+                <p>Hindi Articles</p>
+                <p>Care Plan</p>
+            </div>
+            <div class="dd">
+                <a href="https://www.instagram.com/amarnath_dwibhashyam/">
+                    <img src="instaa.png" style="width: 60px; height: 60px;">
+                </a>
+                <a href="https://www.instagram.com/amarnath_dwibhashyam/">
+                    <img src="fbb.png" style="width: 60px; height: 60px;">
+                </a>
+                <a href="https://www.instagram.com/amarnath_dwibhashyam/">
+                    <img src="youtube1.png" style="width: 60px; height: 60px;">
+                </a>
+            </div>
+    </footer>
+</body>
+
+</html>

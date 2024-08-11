@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asha Worker Registration</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #ecf0f1;
+            color: #3498db;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        .premium-header,
+        .premium-form {
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .premium-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .premium-logo {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .premium-title {
+            color: #3498db;
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+
+        .premium-form {
+            max-width: 500px;
+            width: 100%;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            box-sizing: border-box;
+            border: 1px solid #ecf0f1;
+        }
+
+        .premium-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            color: #3498db;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #3498db;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-weight: bold;
+            background: #ecf0f1;
+            color: #3498db;
+            outline: none;
+            transition: border-color 0.3s ease, color 0.3s ease;
+        }
+
+        input:focus {
+            border-color: #2980b9;
+            color: #2980b9;
+        }
+
+        .input-container {
+            position: relative;
+        }
+
+        .visibility-toggle {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        .visibility-toggle img:last-child {
+            display: none;
+        }
+
+        .premium-button {
+            background: #3498db;
+            color: #fff;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .premium-button:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="premium-header">
+        <img src="ashalogo.jpg" alt="Asha Worker Logo" class="premium-logo">
+        <h1 class="premium-title">Asha Worker - Sign Up</h1>
+    </div>
+    <div class="premium-form" id="mainform">
+        <div class="premium-group">
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" placeholder="Enter your full name" required>
+        </div>
+        <div class="premium-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Enter your email" required
+                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+        </div>
+        <div class="premium-group">
+            <label for="phcId">Your Pincode:</label>
+            <input type="text" id="phcId" placeholder="Enter your Pincode" required>
+        </div>
+        <div class="premium-group">
+            <label for="password">Password:</label>
+            <div class="input-container">
+                <input type="password" id="password" placeholder="Enter a secure password" required pattern=".{8,}">
+            </div>
+        </div>
+        <button id="signupButton" class="premium-button">Sign Up</button>
+        <div id="login-link">
+            <p>Are you already signed up? <a href="ashalogin.html">Login</a></p>
+        </div>
+    </div>
+
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyA_3OXfmTe-gVBA8iaofPE90n4Hcsr_7CY",
+            authDomain: "signupform-fdc9c.firebaseapp.com",
+            projectId: "signupform-fdc9c",
+            storageBucket: "signupform-fdc9c.appspot.com",
+            messagingSenderId: "485882060806",
+            appId: "1:485882060806:web:29e6205ed4f2b76dc7e387"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase();
+        const auth = getAuth(app);
+
+        // Get form elements by ID
+        const FullName = document.getElementById("fullName");
+        const Email = document.getElementById("email");
+        const Pincode = document.getElementById("phcId");
+        const Password = document.getElementById("password");
+
+        // Event listener for form submission
+        let RegisterAshaWorker = async evt => {
+            evt.preventDefault();
+
+            try {
+                // Create user with email and password
+                const credentials = await createUserWithEmailAndPassword(auth, Email.value, Password.value);
+
+                // Store Asha Worker data in the database
+                await set(ref(db, 'AshaWorkerList/' + credentials.user.uid), {
+                    uid: credentials.user.uid,
+                    fullName: FullName.value,
+                    email: Email.value,
+                    pincode: Pincode.value,
+                    role: "ashaWorker"
+                    // Add other Asha Worker data as needed
+                });
+
+                // Redirect to home.html after successful registration
+                window.location.href = 'ashalogin.html';
+                alert("Account created successfully!");
+
+                // Clear input values after successful registration
+                // Reset the form directly using evt.target
+            } catch (error) {
+                const errorCode = error.code;
+                if (errorCode === "auth/email-already-in-use") {
+                    alert("This email is already associated with an existing account.");
+                } else {
+                    alert(error.message);
+                }
+                console.error(error.code);
+                console.error(error.message);
+            }
+        }
+
+        // Attach the event listener to the form
+        document.getElementById("signupButton").addEventListener("click", RegisterAshaWorker);
+    </script>
+</body>
+
+</html>

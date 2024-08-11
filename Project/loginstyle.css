@@ -1,0 +1,67 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background: linear-gradient(pink,purple);
+    height: 100vh;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+}
+.center{
+    margin-top: 40px;
+    height: auto;
+    background-color: blanchedalmond; 
+    border-radius: 10px;
+    width: 500px;
+}
+.header{
+    text-align: center;
+    margin: 20px;
+    color: green;
+    font-family: sans-serif;
+}
+form{
+    margin: 20px 33px;
+    font-weight: bold;
+    color: purple;
+}    
+form .font{ 
+    font-size: 25px;
+    font-family: sans-serif;
+}
+form input{
+    height: 40px; 
+    width: 100%;
+    padding: 0 10px;
+    font-size: 18px;
+    border: 2px solid green;
+}
+form .font2{
+    margin-top: 30px;
+}
+form button{
+    background-color: purple; 
+    color: white;
+    margin: 40px 0 30px; 
+    height: 45px; 
+    border-radius: 10px;
+    width: 100%; 
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+form button:hover{ 
+    background: plum;
+    color: purple;
+}
+form #email_error,form #pass_error{
+    border: 2px solid #EF9A9A; 
+    background:rgba(250,0,0,0.1); 
+    text-align: center;
+    font-size: medium;
+    padding: 5px 8px;
+    display: none;
+}    

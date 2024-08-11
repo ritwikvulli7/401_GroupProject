@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor - Login</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap">
+    <link rel="shortcut icon" href="doctorlogo.png" type="image/x-icon">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Raleway', sans-serif;
+            background-color: #f8f8f8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 350px;
+            border: 2px solid #27ae60;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+            box-sizing: border-box;
+        }
+
+        .doctorlogo {
+            height: 120px;
+            width: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 5px solid #27ae60;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 20px;
+            border: 1px solid #27ae60;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+            background-color: #ffffff;
+            color: #333;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus {
+            border-color: #229954;
+        }
+
+        button {
+            width: 100%;
+            border: 0;
+            padding: 14px;
+            background: linear-gradient(to right, #27ae60, #229954);
+            color: #ffffff;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #229954, #1e8449);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="image">
+            <img src="doctor.jpg" alt="Doctor Logo" class="doctorlogo">
+        </div>
+        <div class="login-form">
+            <input type="email" id="email" placeholder="Email">
+            <input type="password" id="password" placeholder="Password">
+            <button id="loginButton" class="premium-button">Sign In</button>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA_3OXfmTe-gVBA8iaofPE90n4Hcsr_7CY",
+            authDomain: "signupform-fdc9c.firebaseapp.com",
+            projectId: "signupform-fdc9c",
+            storageBucket: "signupform-fdc9c.appspot.com",
+            messagingSenderId: "485882060806",
+            appId: "1:485882060806:web:29e6205ed4f2b76dc7e387"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase();
+        const auth = getAuth(app);
+        const dbref = ref(db);
+        const loginButton = document.getElementById("loginButton");
+
+        // Add click event listener to the login button
+        loginButton.addEventListener("click", async () => {
+            try {
+                var email = document.getElementById("email").value;
+                var password = document.getElementById("password").value;
+
+                // Firebase authentication
+                const credentials = await signInWithEmailAndPassword(auth, email, password);
+
+                console.log("Credentials after login:", credentials);
+
+                const userUid = credentials.user.uid;
+                console.log("User UID:", userUid);
+
+                // Retrieve additional user data from the database
+                const snapshot = await get(child(dbref, 'DoctorList/' + userUid));
+
+                console.log("Snapshot after retrieving user data:", snapshot.val());
+
+                if (snapshot.exists() && snapshot.val() !== null) {
+                    const userInformation = {
+                        userId: userUid,
+                        email: snapshot.val().email,
+                        firstname: snapshot.val().firstname,
+                        lastname: snapshot.val().lastname,
+                        phoneNumber: snapshot.val().mobile, // Adjust field name if necessary
+                        specialty: snapshot.val().speciality // Adjust field name if necessary
+                    };
+
+                    // Store user information in local storage
+                    localStorage.setItem('userInformation', JSON.stringify(userInformation));
+
+                    // Handle successful login
+                    alert("Login is Successful.");
+                    window.location.href = 'doctor.html';
+                } else {
+                    // Invalid login, user data not found
+                    alert("Error: Invalid login. User data not found.");
+                }
+            } catch (error) {
+                // Handle sign-in errors
+                alert("Error: Unable to sign in. Please check your credentials and try again.");
+                console.error("Sign-in error:", error);
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>

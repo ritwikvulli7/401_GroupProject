@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Futuristic Telemedicine</title>
+  <!-- Include Firebase and Google Pay SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.js"></script>
+  <script src="https://pay.google.com/gp/p/js/pay.js"></script>
+
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #1a1a1a, #262626);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    header {
+      background-color: #2d2d2d;
+      text-align: center;
+      padding: 1em;
+      border-bottom: 2px solid #4CAF50;
+      animation: pulse 1.5s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(1.05);
+      }
+    }
+
+    section {
+      max-width: 400px;
+      width: 100%;
+      background: linear-gradient(to right, #313131, #2e2e2e);
+      padding: 2em;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+      transition: transform 0.5s ease-in-out;
+      overflow: hidden;
+    }
+
+    section:hover {
+      transform: rotate(360deg);
+    }
+
+    h1,
+    h2 {
+      color: #4CAF50;
+      font-weight: 400;
+      position: relative;
+      overflow: hidden;
+    }
+
+    h1::before,
+    h2::before {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: #00f7ff;
+      overflow: hidden;
+      clip: rect(0, 100%, 0, 0);
+      animation: neonText 1.5s infinite alternate;
+    }
+
+    @keyframes neonText {
+      0% {
+        transform: translateX(-50%) translateY(50%) scale(0.8);
+      }
+      50% {
+        transform: translateX(50%) translateY(50%) scale(1);
+      }
+      100% {
+        transform: translateX(-50%) translateY(50%) scale(0.8);
+      }
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5em;
+    }
+
+    label {
+      font-weight: bold;
+      margin-bottom: 0.5em;
+      color: #b0c5ff;
+    }
+
+    input {
+      padding: 1em;
+      border: none;
+      border-radius: 8px;
+      background-color: #313131;
+      color: #fff;
+      transition: box-shadow 0.3s;
+    }
+
+    input:focus {
+      box-shadow: 0 0 10px #4CAF50;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 1em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      font-weight: 600;
+      position: relative;
+      overflow: hidden;
+    }
+
+    button:hover {
+      background-color: #36713d;
+    }
+
+    button::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, #00f7ff, #ff00e1, #00f7ff, #ff00e1);
+      opacity: 0;
+      z-index: -1;
+      transform: scaleX(0);
+      transform-origin: 0 50%;
+      transition: transform 0.5s, opacity 0.5s;
+    }
+
+    button:hover::before {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1 data-text="Futuristic Telemedicine"></h1>
+  </header>
+
+  <section>
+    <h2 data-text="Login"></h2>
+
+    <!-- Patient Login Form -->
+    <form id="patientLoginForm">
+      <label for="patientUsername">Patient Username:</label>
+      <input type="text" id="patientUsername" name="patientUsername" required>
+
+      <label for="patientPassword">Password:</label>
+      <input type="password" id="patientPassword" name="patientPassword" required>
+
+      <button type="button" onclick="patientLogin()">Patient Login</button>
+    </form>
+
+    <hr>
+
+    <!-- Doctor Login Form -->
+    <form id="doctorLoginForm">
+      <label for="doctorUsername">Doctor Username:</label>
+      <input type="text" id="doctorUsername" name="doctorUsername" required>
+
+      <label for="doctorPassword">Password:</label>
+      <input type="password" id="doctorPassword" name="doctorPassword" required>
+
+      <button type="button" onclick="doctorLogin()">Doctor Login</button>
+    </form>
+
+    <hr>
+
+    <!-- Google Pay Button -->
+    <button id="googlePayButton" onclick="initiateGooglePay()">Pay with Google</button>
+  </section>
+
+  <script>
+    // ... (same as previous script)
+  </script>
+</body>
+
+</html>

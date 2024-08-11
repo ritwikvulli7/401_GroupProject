@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flexbox Container with Values</title>
+<style>
+    .body1 {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+    }
+    
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 20px;
+        background-color: white;
+        padding:10px 40px 5px 10px;/* Left and right paddings of 200 */
+        border-radius: 10px;
+    }
+
+    .row {
+        display: flex;
+        justify-content: space-between;
+        width: calc(100% + 20px); /* Compensate for negative margins */
+        margin-bottom: 20px; /* Gap between rows */
+    }
+
+    .items {
+        position: relative;
+        padding: 10px 5px 10px 10px; /* Adjusted padding for the plus button */
+        margin: 5px;
+        border: 1px solid transparent; /* Initially transparent border */
+        border-radius: 5px;
+        color: black; /* Default color for values */
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Smooth transition for color and border */
+        cursor: pointer;
+        flex: 1 0 calc(25% - 20px); /* 4 values per row */
+        max-width: calc(25% - 20px); /* 4 values per row */
+    }
+
+    .items:hover {
+        background-color: #f0f0f0;
+    }
+
+    .items.clicked {
+        background-color: #fff; /* Change background color when clicked */
+    }
+
+    .items.clicked .value {
+        color: #3498DB; /* Variant of blue */
+    }
+
+    .plus {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #3498DB; /* Variant of blue */
+    border: 1px solid #3498DB; /* Border for plus */
+    padding: 2px 5px; /* Padding for plus */
+    transition: opacity 0.3s ease, border-color 0.3s ease; /* Smooth transition for plus */
+    z-index: 1; /* Ensure plus is above value */ /* Make the border circular */
+}
+
+
+    .plus.hide {
+        opacity: 0;
+    }
+
+    .tick {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #3498DB; /* Variant of blue */
+        transition: opacity 0.3s ease;
+        display: none;
+        z-index: 1; /* Ensure tick is above value */
+    }
+
+    .tick.show {
+        display: inline-block;
+    }
+
+    .value {
+        position: relative;
+        z-index: 2; /* Ensure value is above plus and tick */
+    }
+
+    .proceed-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 10px 20px;
+        background-color: #3498DB; /* Blue */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        display: none;
+    }
+</style>
+</head>
+<body class="body1">
+
+<div class="container">
+    <div class="row">
+        <div class="items"><span class="value">Thyroid Test</span> <span class="plus">+</span><span class="tick">✔</span></div>
+        <div class="items"><span class="value">Diabetes</span> <span class="plus">+</span><span class="tick">✔</span></div>
+        <div class="items"><span class="value">B.P</span> <span class="plus">+</span><span class="tick">✔</span></div>
+        <div class="items"><span class="value">Urine Test</span> <span class="plus">+</span><span class="tick">✔</span></div>
+    </div>
+    <div class="row">
+        <div class="items"><span class="value">Blood Count Test</span> <span class="plus">+</span><span class="tick">✔</span></div>
+        <div class="items"><span class="value">Covid</span> <span class="plus">+</span><span class="tick">✔</span></div>
+        <div class="items"><span class="value">Kidney Function</span> <span class="plus">+</span><span class="tick">✔</span></div>
+        <div class="items"><span class="value">Liver Function</span> <span class="plus">+</span><span class="tick">✔</span></div>
+    </div>
+</div>
+
+<button class="proceed-button">Proceed</button>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const items = document.querySelectorAll('.items');
+        const proceedButton = document.querySelector('.proceed-button');
+
+        items.forEach(item => {
+            const plus = item.querySelector('.plus');
+            const tick = item.querySelector('.tick');
+
+            plus.addEventListener('click', (event) => {
+                selectItem(item);
+                event.stopPropagation(); // Prevent event bubbling
+            });
+
+            tick.addEventListener('click', (event) => {
+                deselectItem(item);
+                event.stopPropagation(); // Prevent event bubbling
+            });
+            
+            item.addEventListener('click', () => {
+                if (!item.classList.contains('clicked')) {
+                    selectItem(item);
+                } else {
+                    deselectItem(item);
+                }
+            });
+        });
+
+        function selectItem(item) {
+            item.querySelector('.value').style.color = '#3498DB'; // Change color of value
+            item.style.borderColor = '#3498DB'; // Change border color
+            item.querySelector('.plus').classList.add('hide');
+            item.querySelector('.tick').classList.add('show');
+            item.classList.add('clicked'); // Add clicked state
+            toggleProceedButtonVisibility();
+        }
+
+        function deselectItem(item) {
+            item.querySelector('.value').style.color = 'black'; // Revert color of value
+            item.style.borderColor = 'transparent'; // Revert border color
+            item.querySelector('.plus').classList.remove('hide');
+            item.querySelector('.tick').classList.remove('show');
+            item.classList.remove('clicked'); // Remove clicked state
+            toggleProceedButtonVisibility();
+        }
+
+        function toggleProceedButtonVisibility() {
+            let anyItemSelected = false;
+            items.forEach(item => {
+                if (item.classList.contains('clicked')) {
+                    anyItemSelected = true;
+                }
+            });
+            proceedButton.style.display = anyItemSelected ? 'block' : 'none';
+        }
+
+        proceedButton.addEventListener('click', () => {
+            // Redirect to another page
+            window.location.href = 'another-page.html';
+        });
+    });
+</script>
+
+
+</body>
+</html>

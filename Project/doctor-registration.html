@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Registration</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #ecf0f1;
+            color: #3498db;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        .header,
+        .form-container {
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #3498db;
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+        }
+
+        .form-container {
+            max-width: 500px;
+            width: 100%;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            box-sizing: border-box;
+            border: 1px solid #ecf0f1;
+        }
+
+        .form-container::before {
+            content: "";
+            background: #fff;
+            border-radius: 10px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #3498db;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-weight: bold;
+            background: #ecf0f1;
+            color: #3498db;
+            outline: none;
+            transition: border-color 0.3s ease, color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        select:focus {
+            border-color: #2980b9;
+            color: #2980b9;
+        }
+
+        input[type="submit"] {
+            background: #3498db;
+            color: #fff;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background: #2980b9;
+        }
+
+        label {
+            color: #3498db;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        h2 {
+            color: #3498db;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .time-inputs {
+            display: flex;
+        }
+
+        .time-inputs select {
+            flex: 1;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>TeleHealth Prestige</h1>
+        <p>Come Join India's no.1 digital health platform</p>
+    </div>
+    <form class="form-container" id="mainform">
+        <h2>Doctor Registration</h2>
+        <label for="fname">First Name:</label>
+        <input type="text" id="fname" name="fname" required>
+
+        <label for="lname">Last Name:</label>
+        <input type="text" id="lname" name="lname" required>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="">Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+        <label for="speciality">Speciality:</label>
+        <select id="speciality" name="speciality" required>
+            <option value="">Select Speciality</option>
+            <option value="Gynecologist">Gynecologist</option>
+            <option value="Cardiologist">Cardiologist</option>
+            <option value="Dermatologist">Dermatologist</option>
+            <option value="Pediatrician">Pediatrician</option>
+            <option value="Orthopedic Surgeon">Orthopedic Surgeon</option>
+            <option value="Oncologist">Oncologist</option>
+            <!-- Add more options as needed -->
+        </select>
+        <label for="mobile">Mobile Number:</label>
+        <input type="text" id="mobile" name="mobile" pattern="[0-9]{10}" required>
+        <label for="profileImage">Profile Image:</label>
+        <input type="file" id="profileImage" name="profileImage" accept="image/*" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <label for="timeFrom">Available From:</label>
+        <div class="time-inputs">
+            <select id="timeFromHour" name="timeFromHour" required>
+                <option value="">Hour</option>
+            </select>
+            <select id="timeFromMinute" name="timeFromMinute" required>
+                <option value="">Minute</option>
+            </select>
+            <select id="timeFromPeriod" name="timeFromPeriod" required>
+                <option value="AM">AM</option>
+                <option value="PM">PM</option>
+            </select>
+        </div>
+
+        <label for="timeTo">Available To:</label>
+        <div class="time-inputs">
+            <select id="timeToHour" name="timeToHour" required>
+                <option value="">Hour</option>
+                <!-- Add options for hours -->
+            </select>
+            <select id="timeToMinute" name="timeToMinute" required>
+                <option value="">Minute</option>
+            </select>
+            <select id="timeToPeriod" name="timeToPeriod" required>
+                <option value="AM">AM</option>
+                <option value="PM">PM</option>
+            </select>
+        </div>
+        <input type="submit" value="Submit">
+        <div id="login-link">
+            <p>Are you already signed up? <a href="doctor-login.html">Login</a></p>
+        </div>
+    </form>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA_3OXfmTe-gVBA8iaofPE90n4Hcsr_7CY",
+            authDomain: "signupform-fdc9c.firebaseapp.com",
+            projectId: "signupform-fdc9c",
+            storageBucket: "signupform-fdc9c.appspot.com",
+            messagingSenderId: "485882060806",
+            appId: "1:485882060806:web:29e6205ed4f2b76dc7e387"
+        };
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase();
+        const auth = getAuth(app);
+
+        const MainForm = document.getElementById("mainform");
+
+        // Generate options for hours (1 to 12)
+        // Generate options for hours (1 to 12)
+        const timeFromHourSelect = document.getElementById("timeFromHour");
+        const timeToHourSelect = document.getElementById("timeToHour");
+
+        for (let i = 1; i <= 12; i++) {
+            const option = document.createElement("option");
+            option.text = i.toString();
+            option.value = i.toString();
+            timeFromHourSelect.add(option);
+
+            // Clone the option for the 'To' dropdown
+            // Clone the option for the 'To' dropdown
+            const optionClone = option.cloneNode(true);
+            timeToHourSelect.add(optionClone);
+
+        }
+        // Generate options for minutes (00, 15, 30, 45)
+        const timeFromMinuteSelect = document.getElementById("timeFromMinute");
+        const timeToMinuteSelect = document.getElementById("timeToMinute");
+
+        for (let i = 0; i < 60; i += 15) {
+            const option = document.createElement("option");
+            option.text = i.toString().padStart(2, '0');
+            option.value = i.toString().padStart(2, '0');
+            timeFromMinuteSelect.add(option);
+
+            // Clone the option for the 'To' dropdown
+            const optionClone = option.cloneNode(true);
+            timeToMinuteSelect.add(optionClone);
+        }
+
+
+
+        let RegisterDoctor = async evt => {
+            evt.preventDefault();
+
+            const Firstname = document.getElementById("fname").value;
+            const Lastname = document.getElementById("lname").value;
+            const Gender = document.getElementById("gender").value;
+            const Speciality = document.getElementById("speciality").value;
+            const Mobile = document.getElementById("mobile").value;
+            const Email = document.getElementById("email").value;
+            const Password = document.getElementById("password").value;
+            const convertTo24HourFormat = (hour, minute, period) => {
+                let hour24;
+                if (period === "PM" && hour !== "12") {
+                    hour24 = parseInt(hour) + 12;
+                } else if (period === "AM" && hour === "12") {
+                    hour24 = 0;
+                } else {
+                    hour24 = parseInt(hour);
+                }
+
+                const minute24 = parseInt(minute);
+
+                // Formatting the hour and minute parts to have leading zeros if necessary
+                const formattedHour = hour24.toString().padStart(2, '0');
+                const formattedMinute = minute24.toString().padStart(2, '0');
+
+                return formattedHour + ":" + formattedMinute;
+            };
+            // Getting values from the form
+            const timeFromHour = document.getElementById("timeFromHour").value;
+            const timeFromMinute = document.getElementById("timeFromMinute").value;
+            const timeFromPeriod = document.getElementById("timeFromPeriod").value;
+            const timeToHour = document.getElementById("timeToHour").value;
+            const timeToMinute = document.getElementById("timeToMinute").value;
+            const timeToPeriod = document.getElementById("timeToPeriod").value;
+            const timeFrom24 = convertTo24HourFormat(timeFromHour, timeFromMinute, timeFromPeriod);
+            const timeTo24 = convertTo24HourFormat(timeToHour, timeToMinute, timeToPeriod);
+            try {
+                // Create user with email and password
+                const credentials = await createUserWithEmailAndPassword(auth, Email, Password);
+
+                // Store doctor data in the database
+                await set(ref(db, 'DoctorList/' + credentials.user.uid), {
+                    uid: credentials.user.uid,
+                    firstname: Firstname,
+                    lastname: Lastname,
+                    gender: Gender,
+                    speciality: Speciality,
+                    mobile: Mobile,
+                    email: Email,
+                    timeFrom: timeFrom24,
+                    timeTo: timeTo24,
+                    role: "doctor"
+                    // ... (other data as needed)
+                });
+                // Redirect to home.html after successful registration
+                window.location.href = 'doctor-login.html';
+                alert("Account created successfully!");
+
+                // Clear input values after successful registration
+                MainForm.reset();
+
+            } catch (error) {
+                const errorCode = error.code;
+                if (errorCode === "auth/email-already-in-use") {
+                    alert("This email is already associated with an existing account.");
+                } else {
+                    alert(error.message);
+                }
+                console.error(error.code);
+                console.error(error.message);
+            }
+        }
+
+        MainForm.addEventListener('submit', RegisterDoctor);
+    </script>
+
+</body>
+
+
+</html>
